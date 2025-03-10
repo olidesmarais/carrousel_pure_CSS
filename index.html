@@ -7,7 +7,7 @@
 
 </head>
 <body>
-    <h1>Tests labels</h1>
+    <h1>Carrousel Pure CSS</h1>
     <div class="carrousel">
         <input type="radio" name="test" id="test1" checked>
         <input type="radio" name="test" id="test2">
@@ -43,6 +43,10 @@
             visibility: hidden;
         }
 
+        .carrousel label {
+            cursor: pointer;
+        }
+
         .navigation {
             display: flex;
             gap: 1rem;
@@ -76,7 +80,6 @@
             text-align: center;
             font-size: 1.5rem;
             color:honeydew;
-            cursor: pointer;
         }
 
         .fleche label:hover {
