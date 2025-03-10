@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+
+</head>
+<body>
+    <h1>Tests labels</h1>
+    <div class="test">
+        <input type="radio" name="test" id="test1" checked>
+        <input type="radio" name="test" id="test2">
+        <input type="radio" name="test" id="test3">
+        <label for="test1">Test 1</label>
+        <label for="test2">Test 2</label>
+        <label for="test3">Test 3</label>
+    </div>
+    <style>
+        #test1:checked ~ label[for="test1"],
+        #test2:checked ~ label[for="test2"],
+        #test3:checked ~ label[for="test3"] {
+            color: red;
+        }
+    </style>
+</body>
+</html>
