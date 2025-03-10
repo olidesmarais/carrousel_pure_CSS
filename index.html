@@ -12,16 +12,43 @@
         <input type="radio" name="test" id="test1" checked>
         <input type="radio" name="test" id="test2">
         <input type="radio" name="test" id="test3">
-        <label for="test1">Test 1</label>
-        <label for="test2">Test 2</label>
-        <label for="test3">Test 3</label>
+        <div class="fleche">
+            <label for="test1" class="prev"></label>
+            <label for="test2" class="prev"></label>
+            <label for="test3" class="prev"></label>
+            <label for="test1" class="next"></label>
+            <label for="test2" class="next"></label>
+            <label for="test3" class="next"></label>
+        </div>
+        <div class="navigation">
+            <label for="test1">Test 1</label>
+            <label for="test2">Test 2</label>
+            <label for="test3">Test 3</label>
+        </div>
     </div>
     <style>
-        #test1:checked ~ label[for="test1"],
-        #test2:checked ~ label[for="test2"],
-        #test3:checked ~ label[for="test3"] {
+        #test1:checked ~ .navigation label[for="test1"],
+        #test2:checked ~ .navigation label[for="test2"],
+        #test3:checked ~ .navigation label[for="test3"] {
             color: red;
         }
+
+        .fleche label {
+            width: 2rem;
+            height: 2rem;
+            display: none;
+        }
+
+        #test1:checked ~ .fleche label[for="test3"].prev,
+        #test1:checked ~ .fleche label[for="test2"].next,
+        #test2:checked ~ .fleche label[for="test1"].prev,
+        #test2:checked ~ .fleche label[for="test3"].next,
+        #test3:checked ~ .fleche label[for="test2"].prev,
+        #test3:checked ~ .fleche label[for="test1"].next {
+            background: greenyellow;
+            display: inline-block;
+        }
+
     </style>
 </body>
 </html>
