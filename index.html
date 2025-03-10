@@ -8,35 +8,87 @@
 </head>
 <body>
     <h1>Tests labels</h1>
-    <div class="test">
+    <div class="carrousel">
         <input type="radio" name="test" id="test1" checked>
         <input type="radio" name="test" id="test2">
         <input type="radio" name="test" id="test3">
+        <div class="slides">
+            <div class="test1"></div>
+            <div class="test2"></div>
+            <div class="test3"></div>
+        </div>
         <div class="fleche">
-            <label for="test1" class="prev"></label>
-            <label for="test2" class="prev"></label>
-            <label for="test3" class="prev"></label>
-            <label for="test1" class="next"></label>
-            <label for="test2" class="next"></label>
-            <label for="test3" class="next"></label>
+            <label for="test1" class="prev">&#x276E;</label>
+            <label for="test2" class="prev">&#x276E;</label>
+            <label for="test3" class="prev">&#x276E;</label>
+            <label for="test1" class="next">&#x276F;</label>
+            <label for="test2" class="next">&#x276F;</label>
+            <label for="test3" class="next">&#x276F;</label>
         </div>
         <div class="navigation">
-            <label for="test1">Test 1</label>
-            <label for="test2">Test 2</label>
-            <label for="test3">Test 3</label>
+            <label for="test1"></label>
+            <label for="test2"></label>
+            <label for="test3"></label>
         </div>
     </div>
     <style>
+        .carrousel {
+            position: relative;
+            overflow: hidden;
+            max-width: 350px;
+        }
+
+        .carrousel input[type=radio] {
+            /*display: none;*/
+            visibility: hidden;
+        }
+
+        .navigation {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            justify-content: center;
+        }
+
+        .navigation label {
+            display: block;
+            width: 1rem;
+            height: .25rem;
+            background: rgba(0,0,0,.25);
+        }
+
         #test1:checked ~ .navigation label[for="test1"],
         #test2:checked ~ .navigation label[for="test2"],
         #test3:checked ~ .navigation label[for="test3"] {
-            color: red;
+            background: rgba(0,0,0,.5);
         }
+
 
         .fleche label {
             width: 2rem;
             height: 2rem;
             display: none;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,.25);
+            border-radius: 3px;
+            text-align: center;
+            font-size: 1.5rem;
+            color:honeydew;
+            cursor: pointer;
+        }
+
+        .fleche label:hover {
+            background: rgba(0,0,0,.5);
+        }
+
+        .prev {
+            left: 1rem;
+        }
+
+        .next {
+            right: 1rem;
         }
 
         #test1:checked ~ .fleche label[for="test3"].prev,
@@ -45,8 +97,46 @@
         #test2:checked ~ .fleche label[for="test3"].next,
         #test3:checked ~ .fleche label[for="test2"].prev,
         #test3:checked ~ .fleche label[for="test1"].next {
-            background: greenyellow;
-            display: inline-block;
+            display: block;
+        }
+
+        .slides {
+            display: flex;
+            /*overflow: hidden;*/
+            width: 100%;
+            transition: all .35s;
+        }
+
+        .slides div {
+            /*height: 200px;*/
+            aspect-ratio: 16/9;
+            min-width: 100%;
+        }
+
+        .test1 {
+            background: blue;
+        }
+        .test2 {
+            background: yellow;
+        }
+        .test3 {
+            background: pink;
+        }
+
+        input:checked:nth-of-type(1) ~ .slides {
+            transform: translateX(0%);
+        }
+        input:checked:nth-of-type(2) ~ .slides {
+            transform: translateX(-100%);
+        }
+        input:checked:nth-of-type(3) ~ .slides {
+            transform: translateX(-200%);
+        }
+        input:checked:nth-of-type(4) ~ .slides {
+            transform: translateX(-300%);
+        }
+        input:checked:nth-of-type(5) ~ .slides {
+            transform: translateX(-400%);
         }
 
     </style>
