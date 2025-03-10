@@ -1,0 +1,83 @@
+.carrousel {
+    position: relative;
+    overflow: hidden;
+    max-width: 350px;
+}
+
+.carrousel input[type=radio] {
+    /*display: none;*/
+    visibility: hidden;
+}
+
+.carrousel label {
+    cursor: pointer;
+}
+
+.navigation {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 0;
+    justify-content: center;
+}
+
+.navigation label {
+    display: block;
+    width: 1rem;
+    height: .25rem;
+    background: rgba(0,0,0,.25);
+}
+
+.fleche label {
+    width: 2rem;
+    height: 2rem;
+    display: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,.25);
+    border-radius: 3px;
+    text-align: center;
+    font-size: 1.5rem;
+    color:honeydew;
+}
+
+.fleche label:hover {
+    background: rgba(0,0,0,.5);
+}
+
+.prev {
+    left: 1rem;
+}
+
+.next {
+    right: 1rem;
+}
+
+.slides {
+    display: flex;
+    /*overflow: hidden;*/
+    width: 100%;
+    transition: all .35s;
+}
+
+.slides div {
+    /*height: 200px;*/
+    aspect-ratio: 16/9;
+    min-width: 100%;
+}
+
+input:checked:nth-of-type(1) ~ .slides {
+    transform: translateX(0%);
+}
+input:checked:nth-of-type(2) ~ .slides {
+    transform: translateX(-100%);
+}
+input:checked:nth-of-type(3) ~ .slides {
+    transform: translateX(-200%);
+}
+input:checked:nth-of-type(4) ~ .slides {
+    transform: translateX(-300%);
+}
+input:checked:nth-of-type(5) ~ .slides {
+    transform: translateX(-400%);
+}
