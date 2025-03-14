@@ -41,7 +41,6 @@ const data = [
 
 function initialisation() {
     const main = document.querySelector('main');
-    console.log('main', main);
     data.forEach(( carrousel ) => {
         main.appendChild( afficherSegment(carrousel) );
     })
@@ -139,7 +138,7 @@ function afficherNavigation( carrousel ) {
 
     div.classList.add( 'navigation' );
 
-    carrousel.slides.forEach(( slide ) => {
+    carrousel.slides.forEach(( ) => {
         div.appendChild( creerLabelNavigation( carrousel._id + idx++ ));
     })
     return div; 
@@ -161,18 +160,16 @@ function ajouterStyling( carrousel ) {
 
     // Navigation
     idx = 0;
-    carrousel.slides.forEach(( slide ) => {
+    carrousel.slides.forEach(() => {
         const id = carrousel._id +  idx;
-        console.log( idx, carrousel.slides.length, idx < carrousel.slides.length - 1 )
         contenu += `#${id}:checked ~ .navigation label[for="${id}"]${idx < carrousel.slides.length - 1 ? "," : " {\nbackground: rgba(0,0,0,.5);\n}"}\n`;
         idx++
     });
 
     // Flèches
     idx = 0;
-    carrousel.slides.forEach(( slide ) => {
+    carrousel.slides.forEach(() => {
         const id = carrousel._id +  idx;
-        console.log( idx, carrousel.slides.length, idx < carrousel.slides.length - 1 )
         contenu += `#${id}:checked ~ .fleche label[for="${
             carrousel._id + (idx - 1 >= 0 ? idx - 1 : carrousel.slides.length - 1)
         }"].prev,\n#${id}:checked ~ .fleche label[for="${carrousel._id + (idx + 1 < carrousel.slides.length ? idx + 1 : 0)}"].next${idx < carrousel.slides.length - 1 ? "," : " {\ndisplay: block;\n}"}\n`;
