@@ -55,7 +55,7 @@
 
 .slides {
     display: flex;
-    /*overflow: hidden;*/
+    /* overflow: hidden; */
     width: 100%;
     transition: all .35s;
 }
