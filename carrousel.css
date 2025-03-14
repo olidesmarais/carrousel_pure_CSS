@@ -5,7 +5,6 @@
 }
 
 .carrousel input[type=radio] {
-    /*display: none;*/
     visibility: hidden;
 }
 
@@ -55,13 +54,11 @@
 
 .slides {
     display: flex;
-    /* overflow: hidden; */
     width: 100%;
     transition: all .35s;
 }
 
 .slides div {
-    /*height: 200px;*/
     aspect-ratio: 16/9;
     min-width: 100%;
 }
