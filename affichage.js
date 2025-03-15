@@ -143,12 +143,30 @@ function creerLabelNavigation( id ) {
 }
 
 function ajouterStyling( carrousel ) {
+    const style_sheets = Array.from(document.styleSheets)
+    const style_sheet = style_sheets.filter((sheet) => sheet.href?.includes('carrousel.css'))[0];
+    // const style_sheet = new CSSStyleSheet();
+    // style_sheet.replaceSync("* { color: red!important}");
+    
+    
     const style = document.createElement( 'style' );
+    let idx;
+    let regle;
     let contenu = "";
-    let idx = 0;
-
+    
     // Contenu des slides
-    carrousel.slides.forEach(( slide ) => contenu += `.${carrousel._id + idx++} {background: ${ slide.couleur }}\n`);
+    idx = 0;
+    regle = "";
+    contenu = "";
+    // carrousel.slides.forEach(( slide ) => {
+    //     console.log(`.${carrousel._id + idx++} {background: ${ slide.couleur }}\n`)
+    //     // style_sheet.replaceSync(`.${carrousel._id + idx++} {background: ${ slide.couleur }}\n`)
+    // });
+    carrousel.slides.forEach(( slide ) => style_sheet.insertRule(`.${carrousel._id + idx++} {background: ${ slide.couleur }}\n`));
+    // carrousel.slides.forEach(( slide ) => regle += `.${carrousel._id + idx++} {background: ${ slide.couleur }}\n`);
+    // console.log( 'regle', regle)
+    // style_sheet.replaceSync(regle);
+    // carrousel.slides.forEach(( slide ) => contenu += `.${carrousel._id + idx++} {background: ${ slide.couleur }}\n`);
 
     // Navigation
     idx = 0;
@@ -164,10 +182,16 @@ function ajouterStyling( carrousel ) {
         const id = carrousel._id +  idx;
         contenu += `#${id}:checked ~ .fleche label[for="${
             carrousel._id + (idx - 1 >= 0 ? idx - 1 : carrousel.slides.length - 1)
-        }"].prev,\n#${id}:checked ~ .fleche label[for="${carrousel._id + (idx + 1 < carrousel.slides.length ? idx + 1 : 0)}"].next${idx < carrousel.slides.length - 1 ? "," : " {\ndisplay: block;\n}"}\n`;
+        }"].prev,\n#${id}:checked ~ .fleche label[for="${
+            carrousel._id + (idx + 1 < carrousel.slides.length ? idx + 1 : 0)
+        }"].next${idx < carrousel.slides.length - 1 ? "," : " {\ndisplay: block;\n}"}\n`;
         idx++
     });
     
     style.innerHTML = contenu;
+
+    // document.adoptedStyleSheets = [style_sheet];
+
+    // NE SERA PLUS NÉCESSAIRE
     return style;
 }
