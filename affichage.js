@@ -43,7 +43,7 @@ function afficherSegment( carrousel ) {
     div.id = carrousel._id;
     div.appendChild( afficherTitre( carrousel.titre ) );
     div.appendChild( afficherCarrousel( carrousel ) );
-    div.appendChild( ajouterStyling( carrousel ));
+    ajouterStyling( carrousel )
     return div;
 }
 
@@ -143,55 +143,37 @@ function creerLabelNavigation( id ) {
 }
 
 function ajouterStyling( carrousel ) {
-    const style_sheets = Array.from(document.styleSheets)
-    const style_sheet = style_sheets.filter((sheet) => sheet.href?.includes('carrousel.css'))[0];
-    // const style_sheet = new CSSStyleSheet();
-    // style_sheet.replaceSync("* { color: red!important}");
-    
-    
-    const style = document.createElement( 'style' );
+    // Accéder à la feuille CSS contenant les règles pour le carrousel
+    const style_sheet = Array.from(document.styleSheets).filter((sheet) => sheet.href?.includes('carrousel.css'))[0];
+
     let idx;
     let regle;
-    let contenu = "";
     
     // Contenu des slides
     idx = 0;
-    regle = "";
-    contenu = "";
-    // carrousel.slides.forEach(( slide ) => {
-    //     console.log(`.${carrousel._id + idx++} {background: ${ slide.couleur }}\n`)
-    //     // style_sheet.replaceSync(`.${carrousel._id + idx++} {background: ${ slide.couleur }}\n`)
-    // });
     carrousel.slides.forEach(( slide ) => style_sheet.insertRule(`.${carrousel._id + idx++} {background: ${ slide.couleur }}\n`));
-    // carrousel.slides.forEach(( slide ) => regle += `.${carrousel._id + idx++} {background: ${ slide.couleur }}\n`);
-    // console.log( 'regle', regle)
-    // style_sheet.replaceSync(regle);
-    // carrousel.slides.forEach(( slide ) => contenu += `.${carrousel._id + idx++} {background: ${ slide.couleur }}\n`);
 
-    // Navigation
+    // Ajout des rgèles pour les labels de navigation
     idx = 0;
+    regle = "";
     carrousel.slides.forEach(() => {
         const id = carrousel._id +  idx;
-        contenu += `#${id}:checked ~ .navigation label[for="${id}"]${idx < carrousel.slides.length - 1 ? "," : " {\nbackground: rgba(0,0,0,.5);\n}"}\n`;
+        regle += `#${id}:checked ~ .navigation label[for="${id}"]${idx < carrousel.slides.length - 1 ? "," : " {\nbackground: rgba(0,0,0,.5);\n}"}\n`;
         idx++
     });
+    style_sheet.insertRule(regle);
 
-    // Flèches
+    // Ajout des règles pour les labels en flèche
     idx = 0;
+    regle = "";
     carrousel.slides.forEach(() => {
         const id = carrousel._id +  idx;
-        contenu += `#${id}:checked ~ .fleche label[for="${
+        regle += `#${id}:checked ~ .fleche label[for="${
             carrousel._id + (idx - 1 >= 0 ? idx - 1 : carrousel.slides.length - 1)
         }"].prev,\n#${id}:checked ~ .fleche label[for="${
             carrousel._id + (idx + 1 < carrousel.slides.length ? idx + 1 : 0)
         }"].next${idx < carrousel.slides.length - 1 ? "," : " {\ndisplay: block;\n}"}\n`;
         idx++
     });
-    
-    style.innerHTML = contenu;
-
-    // document.adoptedStyleSheets = [style_sheet];
-
-    // NE SERA PLUS NÉCESSAIRE
-    return style;
+    style_sheet.insertRule(regle);
 }
