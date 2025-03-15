@@ -4,38 +4,30 @@ const data = [
         titre: "Carrousel 1",
         slides: [
             {
-                // _id: "test1",
                 couleur: "blue"
             },
             {
-                // _id: "test2",
                 couleur: "yellow"
             },
             {
-                // _id: "test3",
                 couleur: "pink"
             }
         ]
-        // slides: [ "test1", "test2", "test3" ]
     },
     {
         _id: "deuxiemeCarrousel",
         titre: "Carrousel 2",
         slides: [
             {
-                // _id: "test4",
                 couleur: 'green'
             },
             {
-                // _id: "test5",
                 couleur: 'red'
             },
             {
-                // _id: "test6",
                 couleur: 'gold'
             }
         ]
-        // slides: [ "test4", "test5", "test6" ]
     }
 ];
 
