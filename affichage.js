@@ -43,7 +43,6 @@ function afficherSegment( carrousel ) {
     div.id = carrousel._id;
     div.appendChild( afficherTitre( carrousel.titre ) );
     div.appendChild( afficherCarrousel( carrousel ) );
-    ajouterStyling( carrousel )
     return div;
 }
 
@@ -72,6 +71,8 @@ function afficherCarrousel( carrousel ) {
 
     // Afficher les labels de navigation
     div.appendChild( afficherNavigation( carrousel ));
+
+    ajouterStyling( carrousel )
 
     return div;
 }
