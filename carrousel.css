@@ -1,3 +1,8 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
 .carrousel {
     position: relative;
     overflow: hidden;
@@ -47,10 +52,12 @@
 
 .prev {
     left: 1rem;
+    /* left: calc( 1rem + 2%); */
 }
 
 .next {
     right: 1rem;
+    /* right: calc( 1rem - 2%); */
 }
 
 .slides {
@@ -60,10 +67,12 @@
     transition: all .35s;
 }
 
-.slides div {
+.slide {
     /*height: 200px;*/
-    aspect-ratio: 16/9;
+    
     min-width: 100%;
+    border: solid black 1px;
+    /* margin: 1em; */
 }
 
 input:checked:nth-of-type(1) ~ .slides {
@@ -80,4 +89,19 @@ input:checked:nth-of-type(4) ~ .slides {
 }
 input:checked:nth-of-type(5) ~ .slides {
     transform: translateX(-400%);
+}
+
+.slides {
+    text-align: center;
+}
+
+.contenu {
+    padding: 4%;
+}
+
+.test1,
+.test2,
+.test3 {
+    /* height: 100px; */
+    aspect-ratio: 16/9;
 }
